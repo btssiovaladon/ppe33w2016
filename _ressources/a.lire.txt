@@ -1,0 +1,8 @@
+Ce dossier sert à partager les ressources entres les équipes.
+
+- Schéma de la base de données
+- Script SQL
+- etc.
+
+_ressources constitue l'unique répertoire au moment du clonage du projet PPE3.3 
+depuis GitHub.
