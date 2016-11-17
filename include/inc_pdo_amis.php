@@ -3,8 +3,10 @@ class Pdo_amis{
       	private $serveur='mysql:host=localhost';
       	private $bdd='dbname=ppeamis';   		
       	private $user='root' ;    	
+
       	private  $mdp='' ;
 		private  $monPdo;
+
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
@@ -18,8 +20,22 @@ class Pdo_amis{
 	}
 	
 	/***************************
-	* Fonctions GET
+	* Fonctions EXEMPLE
 	***************************/
+
+	public function pdo_get_paramExemple(){
+		$req = "select * from parametre";
+
+////////////////////////////
+/*    FONCTION get       */
+////////////////////////////
+    
+	public function pdo_get_action(){
+		$req = "select * from action";
+		$rs =$this->monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
 	
 	/**
 	* Fonction qui récupère la liste de toutes les commissions
@@ -31,19 +47,19 @@ class Pdo_amis{
 		return $ligne;
 	}
 	
-	/***************************
-	* Fonctions UPDATE
-	***************************/
 	
-	/***************************
-	* Fonctions DELETE
-	***************************/
-	
-	public function pdo_get_paramExemple(){
-		$req = "select * from parametre";
-		$rs =$this->monPdo->query($req);
-		$ligne = $rs->fetch();
-		return $ligne;
-	}
+    
+////////////////////////////
+/*    FONCTION insert       */
+////////////////////////////
+    
+////////////////////////////
+/*    FONCTION update        */
+////////////////////////////
+    
+////////////////////////////
+/*    FONCTION delete        */
+////////////////////////////
+
 }
 ?>
