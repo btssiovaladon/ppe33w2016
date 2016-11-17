@@ -204,4 +204,3 @@ function nbErreurs(){
 	}
 }
 ?>
-<?php ?>

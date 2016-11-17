@@ -25,7 +25,7 @@ class Pdo_amis{
 
 	public function pdo_get_paramExemple(){
 		$req = "select * from parametre";
-
+	}
 ////////////////////////////
 /*    FONCTION get       */
 ////////////////////////////

@@ -2,9 +2,6 @@
 
 $action = $_REQUEST['action'];
 
-
-
-
 switch($action) {
 	
 	//Au chargement de la vue v_lstCommission
