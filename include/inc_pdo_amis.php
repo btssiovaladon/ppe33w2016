@@ -3,9 +3,10 @@ class Pdo_amis{
       	private $serveur='mysql:host=localhost';
       	private $bdd='dbname=ppeamis';   		
       	private $user='root' ;    	
+
       	private  $mdp='' ;
 		private  $monPdo;
-		private  $monPdoAmis=null;
+		
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
