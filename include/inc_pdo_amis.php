@@ -5,7 +5,6 @@ class Pdo_amis{
       	private $user='root' ;    	
       	private  $mdp='' ;
 		private  $monPdo;
-		private  $monPdoGsb=null;
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
@@ -17,6 +16,28 @@ class Pdo_amis{
 	public function _destruct(){
 		$this->monPdo = null;
 	}
+	
+	/***************************
+	* Fonctions GET
+	***************************/
+	
+	/**
+	* Fonction qui récupère la liste de toutes les commissions
+	*/
+	public function pdo_get_nomcommission(){
+		$req = "select commission.num_commission as num_commission, commission.nom_commission as nom_commission from commission";
+		$rs = $this->monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
+	
+	/***************************
+	* Fonctions UPDATE
+	***************************/
+	
+	/***************************
+	* Fonctions DELETE
+	***************************/
 	
 	public function pdo_get_paramExemple(){
 		$req = "select * from parametre";
