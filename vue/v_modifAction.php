@@ -11,18 +11,18 @@
     </tr>
     <tr>
         <td>Nom :</td>
-        <td><input  type='text' name=nomaction  size='30' maxlength='32'></td>
+        <td><input  type='text' name='nomaction'  size='30' maxlength='32'></td>
     </tr>
     <tr>
         <td>Durée :</td>
-        <td><input  type='number' name=dureeaction  size='30' maxlength='3'></td>
+        <td><input  type='number' name='dureeaction'  size='30' maxlength='3'></td>
     </tr>
     <tr>
         <td>Date début :</td>
-        <td><input  type='date' name=dateaction  size='30'></td>
+        <td><input  type='date' name='dateaction'  size='30'></td>
     </tr>
     <tr>
         <td>Fonds collectés :</td>
-        <td><input  type='number' name=fondsaction  size='30' maxlength='&0'></td>
+        <td><input  type='number' name='fondsaction'  size='30' maxlength='&0'></td>
     </tr>
 </table>

@@ -3,7 +3,6 @@ class Pdo_amis{
       	private $serveur='mysql:host=localhost';
       	private $bdd='dbname=ppeamis';   		
       	private $user='root' ;    	
-
       	private  $mdp='' ;
 		private  $monPdo;
 		
