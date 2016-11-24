@@ -42,6 +42,12 @@ class Pdo_amis{
 		$ligne = $rs->fetchAll();
 		return $ligne;
 	}
+	
+	public function pdo_get_action_mehdi_dylan_louis_pastouche($req){
+		$rs = $this->monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
     
     public function pdo_get_amisAction($numAmis){
 		$req = "select num_amis, nom_amis, prenom_amis from amis
