@@ -3,9 +3,9 @@ class Pdo_amis{
       	private $serveur='mysql:host=localhost';
       	private $bdd='dbname=ppeamis';   		
       	private $user='root' ;    	
-      	private $mdp='' ;
-		private $monPdo;
-		private $monPdo_ami=null;
+      	private  $mdp='' ;
+		private  $monPdo;
+		private  $monPdoGsb=null;
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
@@ -23,6 +23,10 @@ class Pdo_amis{
 		$rs =$this->monPdo->query($req);
 		$ligne = $rs->fetch();
 		return $ligne;
+		
+    public function cotisation($montant){
+		$req = "INSERT INTO ppeamis.parametre (MONTANT_COTISATION) VALUES ($montant)";
+	}
 	}
 }
 ?>
