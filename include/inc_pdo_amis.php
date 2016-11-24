@@ -3,9 +3,8 @@ class Pdo_amis{
       	private $serveur='mysql:host=localhost';
       	private $bdd='dbname=ppeamis';   		
       	private $user='root' ;    	
-
-      	private  $mdp='' ;
-		private  $monPdo;
+      	private $mdp='' ;
+		private $monPdo;
 
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
@@ -40,12 +39,24 @@ class Pdo_amis{
 	/**
 	* Fonction qui récupère la liste de toutes les commissions
 	*/
-	public function pdo_get_nomcommission(){
-		$req = "select commission.num_commission as num_commission, commission.nom_commission as nom_commission from commission";
+	public function pdo_get_commission(){
+		$req = "select num_commission, nom_commission from commission";
 		$rs = $this->monPdo->query($req);
-		$ligne = $rs->fetch();
+		$ligne = $rs->fetchAll();
 		return $ligne;
 	}
+	
+	/**
+	* Fonction qui récupère la liste de toutes les fonctions
+	*/
+	public function pdo_get_fonction() {
+		$req = "select num_fonction, num_amis, nom_fonction from fonction";
+		$rs = $this->monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
+	
+	
 	
 	
     
@@ -60,6 +71,8 @@ class Pdo_amis{
 ////////////////////////////
 /*    FONCTION delete        */
 ////////////////////////////
+
+
 
 }
 ?>
