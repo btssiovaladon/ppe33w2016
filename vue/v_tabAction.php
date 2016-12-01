@@ -29,9 +29,7 @@ function js_choix_action(action){
 <?php
 echo 'Recherche une activite ';
 
-$res=$pdo->pdo_get_action();
-
-	
+$res=$pdo->pdo_get_action();	
 
  echo '<FORM>
  <SELECT name="activite" size="1" onchange="javascript:js_choix_action(this.value)">';
