@@ -50,7 +50,7 @@
   <fieldset>
     <legend>Ajout</legend>
     <input type="hidden" name="controleur" value="c_action">
-    <input type="hidden" name="action" value="addF">
+    <input type="hidden" name="action" value="a_addAmi_action">
     <input type="text" class="form-control searchAmis" id="usr" name="amis">
     <input type="submit" name="ajout" value="Ajouter">
   </fieldset>
