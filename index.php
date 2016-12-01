@@ -12,9 +12,10 @@ $pdo= new Pdo_amis();
 }*/	 
 $controleur = $_REQUEST['controleur'];
 switch($controleur){
-	case 'c_action':{
-		include("controleur/c_action.php");
+	case 'c_exempleEntetePied':{
+		include("controleur/c_exempleEntetePied.php");
         break;
+
 	}
 }
 
