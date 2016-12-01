@@ -22,6 +22,7 @@ switch($controleur){
 	case 'c_commission' : {
 		include("controleur/c_commission.php");
 		break;
+
 	}
 
 }

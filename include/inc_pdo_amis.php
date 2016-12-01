@@ -59,6 +59,7 @@ class Pdo_amis{
 		$ligne = $rs->fetchAll();
 		return $ligne;
 	}
+<<<<<<< HEAD
 	
 	/**
 	* Fonction qui récupère la liste de toutes les fonctions
@@ -67,6 +68,13 @@ class Pdo_amis{
 		$req = "select num_fonction, num_amis, nom_fonction from fonction";
 		$rs = $this->monPdo->query($req);
 		$ligne = $rs->fetchAll();
+
+    
+    public function pdo_get_actionSelect($numAction){
+		$req = "select num_action, nom_action, duree_action, datedebut_action, fondscollectes_action from action
+               where num_action = '$numAction'";
+		$rs =$this->monPdo->query($req);
+		$ligne = $rs->fetch();
 		return $ligne;
 	}
 	
@@ -133,11 +141,21 @@ class Pdo_amis{
 /*    FONCTION update        */
 ////////////////////////////
     
+    public function pdo_maj_action($numAction, $numAmis, $numCommission, $nomAction, $dureeAction, $datedebAction, $fondscollectesAction){
+		$req = "update action set num_amis = '$numAmis', num_commission = '$numCommission', nom_action = '$nomAction', duree_action = '$dureeAction', datedebut_action = '$datedebAction', fondscollectes_action = '$fondscollectesAction'
+        where num_action = '$numAction'";
+		$this->monPdo->exec($req);
+	}
+    
 ////////////////////////////
 /*    FONCTION delete        */
 ////////////////////////////
 
-
-
+    
+    public function pdo_sup_action($numAction){
+		$req = "delete from action where num_action = '$numAction'";
+		$this->monPdo->exec($req);
+	}
+    
 }
 ?>
