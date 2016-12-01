@@ -37,10 +37,6 @@
 						?>
 						</select>
 					</td>
-					
-					<!--<td>
-						<input type="submit" name="valider">
-					</td>-->
 				</tr>
 			</table>
 		
@@ -62,23 +58,11 @@
 					</td>
 				
 					<td>
-						<input type="text" id="nomMembre" name="NOM_PERSONNE"
-						onkeyup="javascript:envoipersajax(this.value)">
+						<input type="text" id="nomAmis" name="nomAmis"/>
 					</td>
 				</tr>
 			</table>
 			
-			
-			Liste des membres : <br />
-			<td>
-				<select id="listeMembres" size="5">
-					<option value="">Un nom</option>
-				</select>
-			</td>
-			
-			<br />
-			<br />
-				
 			<table>	
 				
 				<tr>
@@ -86,7 +70,7 @@
 						<label for="nomFonction">Choisir une fonction : </label>
 					</td>
 					<td>
-						<select id="listeFonctions" name="listeFonctions">
+						<select id="lstFonctions" name="lstFonctions">
 					
 						<?php
 							foreach($lesFonctions as $uneFonction) {
@@ -113,7 +97,17 @@
 			</table>
 		</div>
 		</form>
+		
 	<?php
+	
+		$pdo -> prepare_listeauto("nomAmis");
+		
+		if($nomMembre != "" && isset($fonctionMembre)) {
+			echo 'bonjour';
+		}
+	
+	
+	
 	}
 	
 ?>

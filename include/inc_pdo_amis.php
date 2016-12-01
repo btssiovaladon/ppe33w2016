@@ -43,12 +43,6 @@ class Pdo_amis{
 		return $ligne;
 	}
     
-    public function pdo_get_commission(){
-		$req = "select num_commission, nom_commission from commission";
-		$rs =$this->monPdo->query($req);
-		$ligne = $rs->fetchAll();
-		return $ligne;
-	}
 	
 	public function pdo_get_action_mehdi_dylan_louis_pastouche($req){
 		$rs = $this->monPdo->query($req);
@@ -97,6 +91,37 @@ class Pdo_amis{
         $commissionAction = $ligne['nom_commission'];
 		return $commissionAction;
 	}
+	
+	
+	
+	/** autocomplétion **/
+	
+	function prepare_listeauto($input){
+		
+		$connex = $this->monPdo;
+		$voiramis = "SELECT NOM_AMIS, PRENOM_AMIS FROM AMIS";
+			
+		$res_amis = $connex->prepare($voiramis);
+		$res_amis->execute();
+			
+			while($row_amis = $res_amis->fetch(PDO::FETCH_OBJ)) {
+				$nom = $row_amis->NOM_AMIS;
+				$prenom = $row_amis->PRENOM_AMIS;
+				$liste_amis[] = $nom." ".$prenom;
+			}
+			
+			$res_amis->closeCursor();
+			?>
+			<script>	
+
+				var listeamis = <?php echo json_encode($liste_amis); ?>;
+				$(<?php echo "'#".$input."'"; ?>).autocomplete({
+					source : listeamis,
+					autofocus:true
+				});
+			</script>
+			<?php 
+		}
     
  
     
