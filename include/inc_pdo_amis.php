@@ -5,7 +5,10 @@ class Pdo_amis{
       	private $user='root' ;    	
       	private  $mdp='' ;
 		private  $monPdo;
+//<<<<<<< HEAD
 		private  $monPdoGsb=null;
+		
+//>>>>>>> 3687aa6210bd1eb83f92e7b93045542a162e8487
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
@@ -18,15 +21,81 @@ class Pdo_amis{
 		$this->monPdo = null;
 	}
 	
-	public function pdo_get_paramExemple(){
-		$req = "select * from parametre";
+////////////////////////////
+/*    FONCTION get       */
+////////////////////////////
+    
+	public function pdo_get_action(){
+		$req = "select num_action, num_amis, num_commission, nom_action, duree_action, datedebut_action, fondscollectes_action from action";
+		$rs =$this->monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
+    
+    public function pdo_get_amis(){
+		$req = "select num_amis, nom_amis, prenom_amis, telephonefixe_amis, telephoneportable_amis, email_amis, numadresse_amis, adresserue_amis, adresseville_amis, dateentree_amis, num_amis_1, num_amis_2, num_commission, num_commission_1 from amis";
+		$rs =$this->monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
+    
+    public function pdo_get_commission(){
+		$req = "select num_commission, nom_commission from commission";
+		$rs =$this->monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
+	
+	public function pdo_get_action_mehdi_dylan_louis_pastouche($req){
+		$rs = $this->monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
+    
+    
+    public function pdo_get_amisAction($numAmis){
+		$req = "select num_amis, nom_amis, prenom_amis from amis
+                where num_amis = '$numAmis'";
+		$rs =$this->monPdo->query($req);
+		$ligne = $rs->fetch();
+        $amisAction = $ligne['nom_amis'].' '.$ligne['prenom_amis'];
+		return $amisAction;
+	}
+    
+    public function pdo_get_commissionAction($numCommission){
+		$req = "select * from commission
+                where num_commission = '$numCommission'";
+		$rs =$this->monPdo->query($req);
+		$ligne = $rs->fetch();
+        $commissionAction = $ligne['nom_commission'];
+		return $commissionAction;
+	}
+		
+	public function pdo_get_cotisation(){
+		$req = "select MONTANT_COTISATION from parametre";
+                
 		$rs =$this->monPdo->query($req);
 		$ligne = $rs->fetch();
 		return $ligne;
+	}	
+       
+////////////////////////////
+/*    FONCTION insert       */
+////////////////////////////
+    public function modif_cotisation($montant){
+		$req = "UPDATE  ppeamis.parametre SET  MONTANT_COTISATION ='$montant'";
+		$this -> monPdo->exec($req);
 		
-    public function cotisation($montant){
-		$req = "INSERT INTO ppeamis.parametre (MONTANT_COTISATION) VALUES ($montant)";
+		
+	
 	}
-	}
+////////////////////////////
+/*    FONCTION update        */
+////////////////////////////
+    
+////////////////////////////
+/*    FONCTION delete        */
+////////////////////////////
+
 }
 ?>
