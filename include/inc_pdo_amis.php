@@ -3,9 +3,9 @@ class Pdo_amis{
       	private $serveur='mysql:host=localhost';
       	private $bdd='dbname=ppeamis';   		
       	private $user='root' ;    	
-      	private  $mdp='' ;
-		private  $monPdo;
-		
+      	private $mdp='' ;
+		private $monPdo;
+
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
@@ -18,6 +18,13 @@ class Pdo_amis{
 		$this->monPdo = null;
 	}
 	
+	/***************************
+	* Fonctions EXEMPLE
+	***************************/
+
+	public function pdo_get_paramExemple(){
+		$req = "select * from parametre";
+	}
 ////////////////////////////
 /*    FONCTION get       */
 ////////////////////////////
@@ -36,20 +43,44 @@ class Pdo_amis{
 		return $ligne;
 	}
     
-    public function pdo_get_commission(){
+	
+	public function pdo_get_action_mehdi_dylan_louis_pastouche($req){
+		$rs = $this->monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
+	
+	/**
+	* Fonction qui récupère la liste de toutes les commissions
+	*/
+	public function pdo_get_commission(){
 		$req = "select num_commission, nom_commission from commission";
-		$rs =$this->monPdo->query($req);
+		$rs = $this->monPdo->query($req);
 		$ligne = $rs->fetchAll();
 		return $ligne;
 	}
+<<<<<<< HEAD
+	
+	/**
+	* Fonction qui récupère la liste de toutes les fonctions
+	*/
+	public function pdo_get_fonction() {
+		$req = "select num_fonction, num_amis, nom_fonction from fonction";
+		$rs = $this->monPdo->query($req);
+		$ligne = $rs->fetchAll();
+
     
     public function pdo_get_actionSelect($numAction){
-		$req = "select num_action, nom_action, duree_action,                      datedebut_action, fondscollectes_action from action
+		$req = "select num_action, nom_action, duree_action, datedebut_action, fondscollectes_action from action
                where num_action = '$numAction'";
 		$rs =$this->monPdo->query($req);
 		$ligne = $rs->fetch();
 		return $ligne;
 	}
+	
+	
+	
+	
     
     public function pdo_get_amisAction($numAmis){
 		$req = "select num_amis, nom_amis, prenom_amis from amis
@@ -68,6 +99,37 @@ class Pdo_amis{
         $commissionAction = $ligne['nom_commission'];
 		return $commissionAction;
 	}
+	
+	
+	
+	/** autocomplétion **/
+	
+	function prepare_listeauto($input){
+		
+		$connex = $this->monPdo;
+		$voiramis = "SELECT NOM_AMIS, PRENOM_AMIS FROM AMIS";
+			
+		$res_amis = $connex->prepare($voiramis);
+		$res_amis->execute();
+			
+			while($row_amis = $res_amis->fetch(PDO::FETCH_OBJ)) {
+				$nom = $row_amis->NOM_AMIS;
+				$prenom = $row_amis->PRENOM_AMIS;
+				$liste_amis[] = $nom." ".$prenom;
+			}
+			
+			$res_amis->closeCursor();
+			?>
+			<script>	
+
+				var listeamis = <?php echo json_encode($liste_amis); ?>;
+				$(<?php echo "'#".$input."'"; ?>).autocomplete({
+					source : listeamis,
+					autofocus:true
+				});
+			</script>
+			<?php 
+		}
     
  
     
@@ -88,6 +150,7 @@ class Pdo_amis{
 ////////////////////////////
 /*    FONCTION delete        */
 ////////////////////////////
+
     
     public function pdo_sup_action($numAction){
 		$req = "delete from action where num_action = '$numAction'";
