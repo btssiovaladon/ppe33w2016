@@ -12,5 +12,9 @@ switch($action){
         }
         break;
     }
+    case 'a_addAmi_action':{
+        include("vue/v_ajoutAmisTache.php");
+        break;
+    }
 }
 ?>
