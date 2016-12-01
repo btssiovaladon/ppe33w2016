@@ -75,7 +75,6 @@ class Pdo_amis{
 		$ligne = $rs->fetchAll();
 		return $ligne;
 	}
-	
 	/**
 	* Fonction qui récupère la liste de toutes les fonctions
 	*/
@@ -83,6 +82,7 @@ class Pdo_amis{
 		$req = "select num_fonction, num_amis, nom_fonction from fonction";
 		$rs = $this->monPdo->query($req);
 		$ligne = $rs->fetchAll();
+	}
 
     
     public function pdo_get_actionSelect($numAction){
