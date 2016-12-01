@@ -1,4 +1,6 @@
 <?php echo "coucou".$num_action;
+
+
 ?>
 <table BORDER="1"> 
 <tr>
