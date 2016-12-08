@@ -22,16 +22,11 @@ function js_choix_action(action){
 			alert("error");
 			}
 		});
-
-}
-
 </script>
 
 
 <?php
 echo 'Recherche une activité ';
-
-$res=$pdo->pdo_get_action();	
 
  echo '<FORM>
  <SELECT name="activite" size="1" onchange="javascript:js_choix_action(this.value)"><OPTION value="0" selected disabled >Choix</OPTION>';
@@ -40,6 +35,6 @@ $res=$pdo->pdo_get_action();
 }
 echo '</SELECT>
   </FORM>';
-  
+
 ?>
 <div id="tableau_action"></div>
