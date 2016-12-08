@@ -45,5 +45,9 @@ switch($action){
         include("vue/v_ajoutAmisTache.php");
         break;
     }
+	case 'a_ajoutAction':{
+		include("vue/v_ajoutAction.php");
+        break;
+	}
 }
 ?>
