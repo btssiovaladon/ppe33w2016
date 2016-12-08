@@ -25,7 +25,7 @@ foreach($res as $ligne){
 <td> <!--<a href="index.php?controleur=controleurajout&$num_action=$num_action">!-->LIEN AJOUT PARTICIPANT</a> </td>
 <td> LIEN CONSULTER </td>
 <td><a href="index.php?controleur=c_action&action=a_updateAction&num_action=<?php echo $num_action; ?>">MODIFIER </td>
-<td> LIEN SUPPRIMER L'ACTIVITE </td>
+<td><a href="index.php?controleur=c_action&action=a_deleteAction&num_action=<?php echo $num_action; ?>" onclick="return confirm('Voulez-vous supprimer cette action ?');">SUPPRIMER </td>
 <td> LANCER IMPRESSION </td>
 <td> LANCER IMPRESSION ETIQUETTE </td>
 </tr>

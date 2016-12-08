@@ -19,13 +19,8 @@ switch($action){
     }
 
     case 'a_updateAction':{
-        $numAc = 1;
-        $nomAc = "Action 1";
+        $numAc = $_GET['num_action'];
         $infosAction = $pdo -> pdo_get_actionSelect($numAc);
-        $numAm = 4;
-        $nomAmisAction = $pdo -> pdo_get_amisAction($numAm);
-        $numCo = 1;
-        $nomCommissionAction = $pdo -> pdo_get_commissionAction($numAm);
         $listeAmis = $pdo -> pdo_get_amis();
         $listeCommission = $pdo -> pdo_get_commission();
 
@@ -41,7 +36,7 @@ switch($action){
     }
 	
     case 'a_deleteAction':{
-        $numAc = 5;
+        $numAc = $_GET['num_action'];
         $pdo -> pdo_sup_action($numAc);
 
         include("vue/v_tabAction.php");
