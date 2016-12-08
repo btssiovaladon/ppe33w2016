@@ -69,6 +69,14 @@ class Pdo_amis{
 		return $ligne;
 	}
 
+  public function pdo_get_amis_one($num_amis)
+  {
+    $req = "select nom_amis, prenom_amis, telephonefixe_amis, telephoneportable_amis, email_amis, numadresse_amis, adresserue_amis, adresseville_amis, dateentree_amis, num_amis_1, num_amis_2, num_commission, num_commission_1 from amis WHERE num_amis = ".$num_amis;
+    $rs =$this->monPdo->query($req);
+    $ligne = $rs->fetchAll();
+    return $ligne;
+  }
+
 
 	/**
 	* Fonction qui récupère la liste de toutes les commissions
@@ -127,7 +135,13 @@ class Pdo_amis{
     return $ligne;
   }
 
-
+  public function pdo_check_existence_ami_action($num_amis,$action)
+  {
+    $req = " SELECT COUNT(num_amis) AS nbOccurence FROM participer WHERE num_amis = ".$num_amis." AND num_action = ".$action;
+    $rs = $this->monPdo->query($req);
+    $ligne = $rs->fetch();
+    return $ligne;
+  }
 
 /*    FONCTION insert       */
 ////////////////////////////
