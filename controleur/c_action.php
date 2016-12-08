@@ -3,7 +3,13 @@ $action = $_REQUEST['action'];
 
 switch($action){
     case 'a_getAction':{
-        include("vue/v_tabAction.php");
+        $listeAction=$pdo->pdo_get_action();	
+        if($listeAction == null){
+            echo "<h2>Il n'y a aucune action existante !!!</h2>";
+        }
+        else{
+            include("vue/v_tabAction.php");
+        }
         break;
     }
 	

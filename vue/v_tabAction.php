@@ -29,11 +29,9 @@ function js_choix_action(action){
 <?php
 echo 'Recherche une activité ';
 
-$res=$pdo->pdo_get_action();	
-
  echo '<FORM>
  <SELECT name="activite" size="1" onchange="javascript:js_choix_action(this.value)">';
- foreach($res as $ligne){
+ foreach($listeAction as $ligne){
 	 echo '<OPTION value="'.$ligne['num_action'].'">'.$ligne['nom_action']."</OPTION>";
 }
 echo '</SELECT>
