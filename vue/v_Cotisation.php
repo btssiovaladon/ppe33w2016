@@ -4,7 +4,7 @@ $montant_cotisation = $param['MONTANT_COTISATION'];
 
 ?>
 <h3>Saisie de la cotisation annuelle</h3>
-<form method='POST' action='index.php?controleur=c_enreg_cotisation'>
+<form method='POST' action='index.php?controleur=c_enreg_cotisation&action=a_Cotisation'>
 
 <td>Montant de la cotisation</td>
 <input name="montant"value ="<?php echo $montant_cotisation ?>" rows="1" cols="40">
