@@ -2,13 +2,11 @@
 class Pdo_amis{
       	private $serveur='mysql:host=localhost';
 
-
-
       	private $bdd='dbname=ppeamis';
       	private $user='root' ;
-      	private $mdp='' ;
-		private $monPdo;
 
+      	private  $mdp='' ;
+		private  $monPdo;
 
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
@@ -70,6 +68,13 @@ class Pdo_amis{
 		return $ligne;
 	}
 
+    public function pdo_get_amis_one($num_amis){
+        $req = "select nom_amis, prenom_amis, telephonefixe_amis, telephoneportable_amis, email_amis, numadresse_amis, adresserue_amis, adresseville_amis, dateentree_amis, num_amis_1, num_amis_2, num_commission, num_commission_1 from amis WHERE num_amis = ".$num_amis;
+        $rs =$this->monPdo->query($req);
+        $ligne = $rs->fetchAll();
+        return $ligne;
+    }
+
 
 	/**
 	* Fonction qui récupère la liste de toutes les commissions
@@ -88,7 +93,7 @@ class Pdo_amis{
 		$rs = $this->monPdo->query($req);
 		$ligne = $rs->fetchAll();
 		return $ligne;
-	}
+	 }
 
 
     public function pdo_get_actionSelect($numAction){
@@ -97,15 +102,17 @@ class Pdo_amis{
 		$rs =$this->monPdo->query($req);
 		$ligne = $rs->fetch();
 		return $ligne;
-	}
+	 }
 
     public function pdo_get_participation($action){
         $liste = array();
+
         $req = "SELECT num_amis FROM participer WHERE num_action = ".$action;
         $rs = $this->monPdo->query($req);
-            while($ligne = $rs->fetch()){
-                array_push($liste,$ligne);
-            }
+        while($ligne = $rs->fetch())
+        {
+          array_push($liste,$ligne);
+        }
         return $liste;
     }
 
@@ -123,8 +130,23 @@ class Pdo_amis{
         return $ligne;
     }
 
+    public function pdo_check_existence_ami_action($num_amis,$action){
+        $req = " SELECT COUNT(num_amis) AS nbOccurence FROM participer WHERE num_amis = ".$num_amis." AND num_action = ".$action;
+        $rs = $this->monPdo->query($req);
+        $ligne = $rs->fetch();
+        return $ligne;
+    }
+    
+    public function pdo_get_cotisation(){
+		$req = "select MONTANT_COTISATION from parametre";
 
-////////////////////////////
+		$rs =$this->monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
+    
+    
+//////////////////////////// 
 /*    FONCTION insert       */
 ////////////////////////////
 
@@ -132,8 +154,8 @@ class Pdo_amis{
         $req = "INSERT INTO participer VALUES(".$numAmis.",".$numAction.")";
         $rs = $this->monPdo->query($req);
     }
-    
 
+    
 ////////////////////////////
 /*    FONCTION update        */
 ////////////////////////////
@@ -144,6 +166,12 @@ class Pdo_amis{
 		$this->monPdo->exec($req);
 	}
 
+    public function modif_cotisation($montant){
+		$req = "UPDATE  ppeamis.parametre SET  MONTANT_COTISATION ='$montant'";
+		$this -> monPdo->exec($req);
+
+	}
+    
 
 ////////////////////////////
 /*    FONCTION delete        */

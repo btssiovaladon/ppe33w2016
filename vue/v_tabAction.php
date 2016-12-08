@@ -7,17 +7,17 @@ function js_choix_action(action){
 		type:"POST",
 		data:"num_action="+action,
 		success:function(reponse){
-	
+
 			$('#tableau_action').html(reponse);
-		
+
 		//success:function(reponse){
 		//	$('#tableau_action').html(reponse);
-			
+
 			//var tableau_action=document.getElementById("tableau_action");
 			//tableau_action.InnerHTML=reponse;
 		},
 		error:function(){
-			
+
 		alert("error");
 		}
 	});
@@ -36,6 +36,6 @@ echo 'Recherche une activité ';
 }
 echo '</SELECT>
   </FORM>';
-  
+
 ?>
 <div id="tableau_action"></div>
