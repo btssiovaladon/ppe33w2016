@@ -1,4 +1,4 @@
-<h2>Modification de l'action : <?php echo $nomAc; ?></h2>
+<h2>Modification de l'action : <?php echo $infosAction['nom_action']; ?></h2>
 <form method='POST' action='index.php?controleur=c_action&action=a_submitAction'>
 <table>
     <tr>
@@ -6,12 +6,13 @@
         <td>
             <select name = "idAmis" size = "1">
                 <?php
+                    $numAmisA = $infosAction['num_amis'];
                     foreach ($listeAmis as $la){
                         $numAmis = $la['num_amis'];
                         $nomAmis = $la['nom_amis'];
                         $prenomAmis = $la['prenom_amis'];
                         $selected = '';
-                        if($numAmis == $nomAmisAction){
+                        if($numAmis == $numAmisA){
                             $selected = "selected=";
                         }
                 ?>
@@ -28,11 +29,12 @@
         <td>
              <select name = "idCommission" size = "1">
                 <?php
+                    $numCommissionA = $infosAction['num_commission'];
                     foreach ($listeCommission as $lc){
                         $numCommission = $lc['num_commission'];
                         $nomCommission = $lc['nom_commission'];
                         $selected = '';
-                        if($numCommission == $nomCommissionAction){
+                        if($numCommission == $numCommissionA){
                             $selected = "selected=";
                         }
                 ?>

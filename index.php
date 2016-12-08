@@ -1,10 +1,15 @@
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-<?php
 
-require_once("include/inc_fonction.php");
+<?php 
+//include("controleurs/c_connexion.php");
+	
+
+
+require_once("include/inc_fonctions.php");
 require_once("include/inc_pdo_amis.php");
 
 session_start();
@@ -25,6 +30,15 @@ switch($controleur){
 
 	}
 
+	case'c_releve':{
+		include ("controleur/c_releve_annuel.php");
+		break;
+	}
+	case'c_enreg_cotisation':{
+		include ("controleur/c_enreg_cotisation.php");
+		break;	
 }
 
+}
 ?>
+

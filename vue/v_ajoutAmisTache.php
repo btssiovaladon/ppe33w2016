@@ -2,15 +2,26 @@
 <html>
 <?php
 $message = " ";
+$numAction = $_GET['num_action'];
 
 if(isset($_GET['amis']))
 {
   $numAmis = substr($_GET['amis'],0,1);
-  $existe = $pdo->pdo_check_existence_ami_action($numAmis,0);
+  $existe = $pdo->pdo_check_existence_ami_action($numAmis,$numAction);
+
   if($existe['nbOccurence'] == 0)
   {
-    $pdo->pdo_add_amis_action($numAmis,0);
-    $message = "L'amis a été ajouté avec succès! ";
+    $leader = $pdo->pdo_get_leader_action($numAction);
+
+    if($numAmis != $leader['num_amis'])
+    {
+      $pdo->pdo_add_amis_action($numAmis,$numAction);
+      $message = "L'amis a été ajouté avec succès! ";
+    }
+    else
+    {
+      $message = "L'amis est le chef de l'Action !";
+    }
   }
   else
   {
@@ -18,11 +29,11 @@ if(isset($_GET['amis']))
   }
 }
 
-$action_details = $pdo->pdo_get_actionSelect(0);
+$action_details = $pdo->pdo_get_actionSelect($numAction);
 $actionName = $action_details['nom_action'];
 
-$liste = $pdo->pdo_get_participation(0);
-$leader = $pdo->pdo_get_leader_action(0);
+$liste = $pdo->pdo_get_participation($numAction);
+$leader = $pdo->pdo_get_leader_action($numAction);
 ?>
 
 <header>
@@ -76,6 +87,7 @@ $leader = $pdo->pdo_get_leader_action(0);
 
       <input type="hidden" name="controleur" value="c_action">
       <input type="hidden" name="action" value="a_addAmi_action">
+      <input type="hidden" name="num_action" value="<?php echo $numAction; ?>">
       <input type="text" class="form-control searchAmis" id="usr" name="amis">
       <input type="submit" name="ajout" value="Ajouter">
 

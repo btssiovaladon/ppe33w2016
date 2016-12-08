@@ -7,16 +7,17 @@ class PDF extends FPDF
 
   function Header()
   {
+      $numAction = $_GET['num_action'];
       $pdo = new Pdo_amis();
 
-      $action_details = $pdo->pdo_get_actionSelect(0);
+      $action_details = $pdo->pdo_get_actionSelect($numAction);
       $actionName = $action_details['nom_action'];
       // Police Arial gras 15
       $this->SetFont('Arial','B',15);
       // Décalage à droite
       $this->Cell(85);
       // Titre
-      $this->Cell(30,10,$actionName,1,0,'C');
+      $this->Cell(38,10,$actionName,0,0,'C');
       // Saut de ligne
       $this->Ln(20);
   }
@@ -24,10 +25,11 @@ class PDF extends FPDF
   // Tableau amélioré
   function ImprovedTable($header)
   {
+      $numAction = $_GET['num_action'];
       $pdo = new Pdo_amis();
 
-      $liste = $pdo->pdo_get_participation(0);
-      $leader = $pdo->pdo_get_leader_action(0);
+      $liste = $pdo->pdo_get_participation($numAction);
+      $leader = $pdo->pdo_get_leader_action($numAction);
 
       $this->Cell(0,4,"Liste des participants a l'activite",0,0,'C');
 
