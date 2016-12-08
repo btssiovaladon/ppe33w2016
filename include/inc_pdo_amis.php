@@ -132,7 +132,18 @@ class Pdo_amis{
         $req = "INSERT INTO participer VALUES(".$numAmis.",".$numAction.")";
         $rs = $this->monPdo->query($req);
     }
-    
+    public function pdo_add_action($nom_action,$num_amis,$num_commission,$duree_action,$datedebut_action){
+		$sql="INSERT INTO 'action'('NOM_ACTION','NUM_AMIS','NUM_COMMISSION','DUREE_ACTION','DATEDEBUT_ACTION')
+		VALUES('$nom_action','$num_amis','$num_commission','$duree_action','$datedebut_action')";
+		$req =$pdo->prepare($sql_ajout_action);
+		// cette méthode te retourne true/false si ça a réussi/échoué
+		$result = $req->execute($tab);
+		// Du coup, on peux tester sur le retour et afficher l'erreur en cas de soucis
+		if (!$result){
+		// ça t'affiche juste un code. C'est suffisant en prod pour que l'utilisateur te fasse un retour
+		echo "Une erreur est survenue : " . $req->errorCode();
+		}
+	}
 
 ////////////////////////////
 /*    FONCTION update        */
