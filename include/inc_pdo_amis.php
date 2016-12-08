@@ -82,34 +82,16 @@ class Pdo_amis{
 		$req = "select num_fonction, num_amis, nom_fonction from fonction";
 		$rs = $this->monPdo->query($req);
 		$ligne = $rs->fetchAll();
+		return $ligne;
 	}
 
     
     public function pdo_get_actionSelect($numAction){
-		$req = "select num_action, nom_action, duree_action, datedebut_action, fondscollectes_action from action
+		$req = "select num_action, num_amis, num_commission, nom_action, duree_action, datedebut_action, fondscollectes_action from action
                where num_action = '$numAction'";
 		$rs =$this->monPdo->query($req);
 		$ligne = $rs->fetch();
 		return $ligne;
-	}
-	
-	
-    public function pdo_get_amisAction($numAmis){
-		$req = "select num_amis, nom_amis, prenom_amis from amis
-                where num_amis = '$numAmis'";
-		$rs =$this->monPdo->query($req);
-		$ligne = $rs->fetch();
-        $amisAction = $ligne['nom_amis'].' '.$ligne['prenom_amis'];
-		return $amisAction;
-	}
-    
-    public function pdo_get_commissionAction($numCommission){
-		$req = "select * from commission
-                where num_commission = '$numCommission'";
-		$rs =$this->monPdo->query($req);
-		$ligne = $rs->fetch();
-        $commissionAction = $ligne['nom_commission'];
-		return $commissionAction;
 	}
 	  
     
