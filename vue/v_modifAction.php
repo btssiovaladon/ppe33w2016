@@ -56,19 +56,19 @@
     <input type='hidden' name='numaction' value='<?php echo $numAction; ?>'/>
     <tr>
         <td>Nom :</td>
-        <td><input  type='text' name='nomaction' value='<?php echo $nomAction; ?>' size='30' maxlength='32'/></td>
+        <td><input  type='text' name='nomaction' value='<?php echo $nomAction; ?>' size='30' maxlength='32' required="required"/></td>
     </tr>
     <tr>
         <td>Durée :</td>
-        <td><input  type='number' name='dureeaction' value='<?php echo $dureeAction; ?>' size='30' maxlength='3'/></td>
+        <td><input  type='number' name='dureeaction' value='<?php echo $dureeAction; ?>' size='30' maxlength='3' required="required"/></td>
     </tr>
     <tr>
         <td>Date début :</td>
-        <td><input  type='date' name='dateaction' value='<?php echo $datedebAction; ?>' size='30'/></td>
+        <td><input  type='date' name='dateaction' value='<?php echo $datedebAction; ?>' size='30' required="required"/></td>
     </tr>
     <tr>
         <td>Fonds collectés :</td>
-        <td><input  type='number' name='fondsaction' value='<?php echo $fondscollectesAction; ?>' size='30' maxlength='2'/></td>
+        <td><input  type='number' name='fondsaction' value='<?php echo $fondscollectesAction; ?>' size='30' maxlength='2' required="required"/></td>
     </tr>
     <tr>
         <td><input type='reset' value='Annuler' name='annuler'/></td>

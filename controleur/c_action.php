@@ -60,7 +60,6 @@ switch($action){
 		$duree_action=$_POST['duree_action'];
 		$datedebut_action=$_POST['datedebut_action'];
 		//appel fonction insert du pdo
-		
 		$pdo -> pdo_add_action($nom_action,$num_amis,$num_commission,$duree_action,$datedebut_action);
 		break;
 	}
