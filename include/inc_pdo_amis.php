@@ -1,7 +1,10 @@
 <?php
 class Pdo_amis{
       	private $serveur='mysql:host=localhost';
+<<<<<<< HEAD
+=======
 
+>>>>>>> ea79ba4e4a5a7783fcbe4b1655a6681cac708ecf
       	private $bdd='dbname=ppeamis';
       	private $user='root' ;
 
@@ -20,6 +23,8 @@ class Pdo_amis{
 		$this->monPdo = null;
 	}
 
+<<<<<<< HEAD
+=======
     /** autocomplétion **/
 
 	function prepare_listeauto($input){
@@ -49,6 +54,7 @@ class Pdo_amis{
 			<?php
 		}
 
+>>>>>>> ea79ba4e4a5a7783fcbe4b1655a6681cac708ecf
 ////////////////////////////
 /*    FONCTION get       */
 ////////////////////////////
@@ -151,6 +157,35 @@ class Pdo_amis{
 		$ligne = $rs->fetch();
 		return $ligne;
 	}
+<<<<<<< HEAD
+
+	public function rechercheDiner(){
+		$req="SELECT * From diner";
+		$rat=$this->monPdo->query($req);
+		$ligne=$rat->fetchAll();
+		return $ligne;
+	}
+
+	public function ajouterNewDiner($lieu,$date,$prix){
+		$AjoutDiner="INSERT INTO diner(NUM_DINER,LIEU_DINER,DATE_DINER, PRIXDINER_DINER) VALUES (?,?,?,?)";
+	$AjoutDiner = $this->monPdo->prepare($AjoutDiner);
+
+if(isset($_POST)){
+			
+			$AjoutDiner -> bindvalue(2,$lieu['LIEU_DINER']);
+			$AjoutDiner -> bindvalue(3,$date['DATE_DINER']);
+			$AjoutDiner -> bindvalue(4,$prix['PRIXDINER_DINER']);
+
+	$AjoutDiner->execute();
+}
+
+	}
+
+////////////////////////////
+/*    FONCTION insert       */
+////////////////////////////
+
+=======
     
     
 //////////////////////////// 
@@ -177,10 +212,13 @@ class Pdo_amis{
 	} */
 
     
+>>>>>>> ea79ba4e4a5a7783fcbe4b1655a6681cac708ecf
 ////////////////////////////
 /*    FONCTION update        */
 ////////////////////////////
 
+<<<<<<< HEAD
+=======
     public function pdo_maj_action($numAction, $numAmis, $numCommission, $nomAction, $dureeAction, $datedebAction, $fondscollectesAction){
 		$req = "update action set num_amis = '$numAmis', num_commission = '$numCommission', nom_action = '$nomAction', duree_action = '$dureeAction', datedebut_action = '$datedebAction', fondscollectes_action = '$fondscollectesAction'
         where num_action = '$numAction'";
@@ -194,6 +232,7 @@ class Pdo_amis{
 	}
     
 
+>>>>>>> ea79ba4e4a5a7783fcbe4b1655a6681cac708ecf
 ////////////////////////////
 /*    FONCTION delete        */
 ////////////////////////////
