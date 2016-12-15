@@ -52,6 +52,13 @@ class Pdo_amis{
 ////////////////////////////
 /*    FONCTION get       */
 ////////////////////////////
+	
+	public function pdo_get_amis_action(){ //$action
+		$req = "select * FROM amis INNER JOIN participer on amis.NUM_AMIS = participer.NUM_AMIS where participer.NUM_ACTION = 2 ";
+		$rs =$this->monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
 
 	public function pdo_get_action(){
 		$req = "select num_action, num_amis, num_commission, nom_action, duree_action, datedebut_action, fondscollectes_action from action";
@@ -154,6 +161,20 @@ class Pdo_amis{
         $req = "INSERT INTO participer VALUES(".$numAmis.",".$numAction.")";
         $rs = $this->monPdo->query($req);
     }
+	
+	/*public function pdo_add_action($nom_action,$num_amis,$num_commission,$duree_action,$datedebut_action){
+		$sql="INSERT INTO 'action'('NOM_ACTION','NUM_AMIS','NUM_COMMISSION','DUREE_ACTION','DATEDEBUT_ACTION')
+		VALUES('$nom_action','$num_amis','$num_commission','$duree_action','$datedebut_action')";
+		//$req =$pdo->prepare($sql_ajout_action);
+		$req =$pdo->prepare($sql);
+		// cette méthode te retourne true/false si ça a réussi/échoué
+		//$result = $req->execute($tab);
+		// Du coup, on peux tester sur le retour et afficher l'erreur en cas de soucis
+		if (!$result){
+		// ça t'affiche juste un code. C'est suffisant en prod pour que l'utilisateur te fasse un retour
+		echo "Une erreur est survenue : " . $req->errorCode();
+		}
+	} */
 
     
 ////////////////////////////
@@ -181,6 +202,17 @@ class Pdo_amis{
     public function pdo_sup_action($numAction){
 		$req = "delete from action where num_action = '$numAction'";
 		$this->monPdo->exec($req);
+	}
+	
+	public function pdo_sup_participant($Num_Amis, $Num_Action){
+		$req = "delete from participer where NUM_AMIS =? and NUM_ACTION =?";
+		
+		$req =$this->monPdo->prepare($req);
+		
+		$param[0] = $Num_Amis;
+		$param[1] = $Num_Action;
+		print_r($param);
+		$req->execute($param);
 	}
 
 }

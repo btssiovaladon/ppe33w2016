@@ -18,6 +18,11 @@ switch($action){
         break;
 	}
 	
+	case 'a_consultation_participant':{
+		include("vue/v_consultation_membres_actions.php");
+        break;
+	}
+	
 	case 'a_choix_action':{
 		$num_action=$_POST['num_action'];
         include("vue/v_tableau_action.php");
@@ -49,10 +54,27 @@ switch($action){
         break;
     }
 	
+	case 'a_deleteParticipant':{
+		$numAc = $_GET['num_action'];
+		$numAmis = $_GET['num_amis'];
+
+        $pdo -> pdo_sup_participant($numAmis,$numAc);
+		include("vue/v_consultation_membres_actions.php");
+        break;
+	}
+	
     case 'a_addAmi_action':{
         include("vue/v_ajoutAmisTache.php");
         break;
     }
+	case 'a_enregistrement_action':{
+		$nom_action=$_POST['nom_action'];
+		$num_amis=$_POST ['num_amis'];
+		$num_commission=$_POST ['num_commission'];
+		$duree_action=$_POST ['duree_action'];
+		$datedebut_action=$_POST ['datedebut_action'];
+		$pdo -> pdo_add_action($nom_action,$num_amis,$num_commission,$duree_action,$datedebut_action);
+	} 
 
 }
 ?>
