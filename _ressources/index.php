@@ -9,15 +9,6 @@ $pdo= new Pdo_amis();
 
 if(!isset($_REQUEST['controleur']) || !$estConnecte){
      $_REQUEST['controleur'] = 'connexion';
+<<<<<<< HEAD
 }
 
-$controleur = $_REQUEST['controleur'];
-switch($controleur){
-	case 'a_action':{
-		include("controleur/c_actiondiner.php");
-        break;
-	}
-	
-}
-
-?>
