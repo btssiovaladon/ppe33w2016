@@ -2,26 +2,27 @@
 <script type="text/javascript">
 
 function js_choix_action(action){
-		$.ajax({
-		
-			url:"index.php?controleur=c_action&action=a_choix_action",
-			type:"POST",
-			data:"num_action="+action,
-			success:function(reponse){
-		
-				$('#tableau_action').html(reponse);
-			
-			//success:function(reponse){
-			//	$('#tableau_action').html(reponse);
-				
-				//var tableau_action=document.getElementById("tableau_action");
-				//tableau_action.InnerHTML=reponse;
-			},
-			error:function(){
-				
-			alert("error");
-			}
-		});
+	$.ajax({
+		url:"index.php?controleur=c_action&action=a_choix_action",
+		type:"POST",
+		data:"num_action="+action,
+		success:function(reponse){
+
+			$('#tableau_action').html(reponse);
+
+		//success:function(reponse){
+		//	$('#tableau_action').html(reponse);
+
+			//var tableau_action=document.getElementById("tableau_action");
+			//tableau_action.InnerHTML=reponse;
+		},
+		error:function(){
+
+		alert("error");
+		}
+	});
+}
+
 </script>
 
 
@@ -29,8 +30,8 @@ function js_choix_action(action){
 echo 'Recherche une activité ';
 
  echo '<FORM>
- <SELECT name="activite" size="1" onchange="javascript:js_choix_action(this.value)"><OPTION value="0" selected disabled >Choix</OPTION>';
- foreach($res as $ligne){
+ <SELECT name="activite" size="1" onchange="javascript:js_choix_action(this.value)"><OPTION value="0" selected disabled >ChoixGG</OPTION>';
+ foreach($listeAction as $ligne){
 	 echo '<OPTION value="'.$ligne['num_action'].'">'.$ligne['nom_action']."</OPTION>";
 }
 echo '</SELECT>
