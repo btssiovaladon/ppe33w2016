@@ -2,11 +2,10 @@
 $res=$pdo->pdo_get_action();
 $tab;
 foreach($res as $ligne){
-	 if ($ligne['num_action']==$num_action){
+	 if ($ligne['num_action']==$_SESSION['num_action']){
 		 $tab = $ligne;
 	 }
 }
-
 ?>
 
 <table BORDER="1">
@@ -24,8 +23,8 @@ foreach($res as $ligne){
 <!-- FAIRE les liens vers tout les controleur !-->
 <td> <a href="index.php?controleur=c_action&action=a_addAmi_action&num_action=<?php echo $num_action; ?>">LIEN AJOUT PARTICIPANT</a> </td>
 <td> LIEN CONSULTER </td>
-<td><a href="index.php?controleur=c_action&action=a_updateAction&num_action=<?php echo $num_action; ?>">MODIFIER </td>
-<td><a href="index.php?controleur=c_action&action=a_deleteAction&num_action=<?php echo $num_action; ?>" onclick="return confirm('Voulez-vous supprimer cette action ?');">SUPPRIMER </td>
+<td><a href="index.php?controleur=c_action&action=a_updateAction">MODIFIER </td>
+<td><a href="index.php?controleur=c_action&action=a_deleteAction" onclick="return confirm('Voulez-vous supprimer cette action ?');">SUPPRIMER </td>
 <td> <a href="vue/v_printAction.php?num_action=<?php echo $num_action; ?>">IMPRIMER</a> </td>
 <td> LANCER IMPRESSION ETIQUETTE </td>
 </tr>

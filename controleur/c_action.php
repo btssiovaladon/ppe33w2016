@@ -24,13 +24,13 @@ switch($action){
 	}
 	
 	case 'a_choix_action':{
-		$num_action=$_POST['num_action'];
+		$_SESSION['num_action']=$_POST['num_action'];
         include("vue/v_tableau_action.php");
         break;
     }
 
     case 'a_updateAction':{
-        $numAc = $_GET['num_action'];
+        $numAc = $_SESSION['num_action'];
         $infosAction = $pdo -> pdo_get_actionSelect($numAc);
         $listeAmis = $pdo -> pdo_get_amis();
         $listeCommission = $pdo -> pdo_get_commission();
@@ -53,7 +53,7 @@ switch($action){
     }
 	
     case 'a_deleteAction':{
-        $numAc = $_GET['num_action'];
+        $numAc = $_SESSION['num_action'];
         $pdo -> pdo_sup_action($numAc);
 
         $listeAction=$pdo->pdo_get_action();	

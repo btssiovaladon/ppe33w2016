@@ -53,7 +53,7 @@
         </td>
     </tr>
     <?php
-        $numAction = $infosAction['num_action'];
+        $numAction = $_SESSION['num_action'];
         $nomAction = $infosAction['nom_action'];
         $dureeAction = $infosAction['duree_action'];
         $datedebAction = $infosAction['datedebut_action'];
