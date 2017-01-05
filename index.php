@@ -62,4 +62,3 @@ include("./vue/v_zone-principale.php");
 // inclusion du footer.
 include("./vue/v_pied.php");*/
 ?>
-
