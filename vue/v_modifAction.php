@@ -1,4 +1,4 @@
-<h2>Modification de l'action : <?php echo $infosAction['nom_action']; ?></h2>
+<h2>Modification de l'action : <?php echo $_SESSION['num_action']; ?></h2>
 <form method='POST' action='index.php?controleur=c_action&action=a_submitAction'>
 <table>
     <tr>
