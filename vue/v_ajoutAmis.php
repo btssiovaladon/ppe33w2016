@@ -1,5 +1,9 @@
 <?php 
+
 	include("vue/v_entete.php");
+
+	
+
 	if (isset($_POST['submit'])) {
 		$liste = array(
 			$_POST['nom'], 
@@ -74,7 +78,9 @@
 	$pdo -> prepare_listeautoComm("commission1");
 	$pdo -> prepare_listeautoComm("commission2");
 	$liste_amish = $pdo -> selectAmis();
+
 	include("vue/v_pied.php");
+
 ?>
 
 	
