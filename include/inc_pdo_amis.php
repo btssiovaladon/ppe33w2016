@@ -55,7 +55,8 @@ class Pdo_amis{
 
 	public function pdo_get_action(){
 		$req = "select num_action, num_amis, num_commission, nom_action, duree_action, datedebut_action, fondscollectes_action from action";
-		$rs =$this->monPdo->query($req);
+		$rs = $this->monPdo->prepare($req);
+        $rs -> execute();
 		$ligne = $rs->fetchAll();
 		return $ligne;
 	}
@@ -63,7 +64,8 @@ class Pdo_amis{
 
     public function pdo_get_amis(){
 		$req = "select num_amis, nom_amis, prenom_amis, telephonefixe_amis, telephoneportable_amis, email_amis, numadresse_amis, adresserue_amis, adresseville_amis, dateentree_amis, num_amis_1, num_amis_2, num_commission, num_commission_1 from amis";
-		$rs =$this->monPdo->query($req);
+		$rs = $this->monPdo->prepare($req);
+        $rs -> execute();
 		$ligne = $rs->fetchAll();
 		return $ligne;
 	}
@@ -81,7 +83,8 @@ class Pdo_amis{
 	*/
 	public function pdo_get_commission(){
 		$req = "select num_commission, nom_commission from commission";
-		$rs = $this->monPdo->query($req);
+		$rs = $this->monPdo->prepare($req);
+        $rs -> execute();
 		$ligne = $rs->fetchAll();
 		return $ligne;
 	}
@@ -99,7 +102,8 @@ class Pdo_amis{
     public function pdo_get_actionSelect($numAction){
 		$req = "select num_action, num_amis, num_commission, nom_action, duree_action, datedebut_action, fondscollectes_action from action
                where num_action = '$numAction'";
-		$rs =$this->monPdo->query($req);
+		$rs = $this->monPdo->prepare($req);
+        $rs -> execute();
 		$ligne = $rs->fetch();
 		return $ligne;
 	 }
@@ -163,7 +167,8 @@ class Pdo_amis{
     public function pdo_maj_action($numAction, $numAmis, $numCommission, $nomAction, $dureeAction, $datedebAction, $fondscollectesAction){
 		$req = "update action set num_amis = '$numAmis', num_commission = '$numCommission', nom_action = '$nomAction', duree_action = '$dureeAction', datedebut_action = '$datedebAction', fondscollectes_action = '$fondscollectesAction'
         where num_action = '$numAction'";
-		$this->monPdo->exec($req);
+		$rs = $this->monPdo->prepare($req);
+        $rs -> execute();
 	}
 
     public function modif_cotisation($montant){
@@ -180,7 +185,8 @@ class Pdo_amis{
 
     public function pdo_sup_action($numAction){
 		$req = "delete from action where num_action = '$numAction'";
-		$this->monPdo->exec($req);
+		$rs = $this->monPdo->prepare($req);
+        $rs -> execute();
 	}
 
 }

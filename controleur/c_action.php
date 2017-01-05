@@ -36,8 +36,15 @@ switch($action){
 	
     case 'a_submitAction':{
         $pdo -> pdo_maj_action($_POST['numaction'], $_POST['idAmis'], $_POST['idCommission'], $_POST['nomaction'], $_POST['dureeaction'], $_POST['dateaction'], $_POST['fondsaction']);
-
-        include("vue/v_tabAction.php");
+        
+        echo $_POST['numaction'].' '.$_POST['idAmis'].' '.$_POST['idCommission'].' '.$_POST['nomaction'].' '.$_POST['dureeaction'].' '.$_POST['dateaction'].' '.$_POST['fondsaction'];
+        $listeAction=$pdo->pdo_get_action();	
+        if($listeAction == null){
+            echo "<h2>Il n'y a aucune action existante !!!</h2>";
+        }
+        else{
+            include("vue/v_tabAction.php");
+        }
         break;
     }
 	
@@ -45,7 +52,13 @@ switch($action){
         $numAc = $_GET['num_action'];
         $pdo -> pdo_sup_action($numAc);
 
-        include("vue/v_tabAction.php");
+        $listeAction=$pdo->pdo_get_action();	
+        if($listeAction == null){
+            echo "<h2>Il n'y a aucune action existante !!!</h2>";
+        }
+        else{
+            include("vue/v_tabAction.php");
+        }
         break;
     }
 	

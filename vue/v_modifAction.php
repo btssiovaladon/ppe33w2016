@@ -13,15 +13,20 @@
                         $prenomAmis = $la['prenom_amis'];
                         $selected = '';
                         if($numAmis == $numAmisA){
-                            $selected = "selected=";
+                            $selected = 'selected="selected"';
                         }
                 ?>
                 <option <?php echo $selected; ?> value="<?php echo $numAmis; ?>">
                     <?php echo $nomAmis.' '.$prenomAmis; ?>
                 </option>
+               
                 <?php
+                      
                     }
+                  
                 ?>
+                
+            </select>
         </td>
     </tr>
     <tr>
@@ -35,7 +40,7 @@
                         $nomCommission = $lc['nom_commission'];
                         $selected = '';
                         if($numCommission == $numCommissionA){
-                            $selected = "selected=";
+                            $selected = 'selected="selected"';
                         }
                 ?>
                 <option <?php echo $selected; ?> value="<?php echo $numCommission; ?>">
@@ -44,6 +49,7 @@
                 <?php
                     }
                 ?>
+                 </select>
         </td>
     </tr>
     <?php
