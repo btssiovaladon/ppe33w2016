@@ -15,6 +15,13 @@
   <link rel="stylesheet" href="css/footer.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="./js/sweetalert-master/dist/sweetalert.min.js"></script>
+	<link href="./js/sweetalert-master/dist/sweetalert.css" rel="stylesheet" type="text/css" />
+ 
 </head>
 <body>
 <nav class="navbar navbar-inverse">

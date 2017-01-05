@@ -242,6 +242,154 @@ class Pdo_amis{
 		print_r($param);
 		$req->execute($param);
 	}
+	
+	
+	function chercherNumAmis($nom, $prenom){
+		$connex = $this->monPdo;
+		
+		$req="SELECT NUM_AMIS FROM AMIS WHERE PRENOM_AMIS = :param1 AND NOM_AMIS = :param2";
+		$res=$connex -> prepare($req);
+			$res->execute(array(
+			'param1'=>$prenom,
+			'param2'=>$nom));
+		
+		$num = 0;
+		
+		while ($row=$res->fetch(PDO::FETCH_OBJ)) {
+			$num = $row->NUM_AMIS;
+		}
+		
+		return $num;
+	}
+	
+	function ajouteAmis($liste){
+		$connex = $this->monPdo;
+		
+		$parrain1 = explode(" ",$liste[9]);
+		$parrain2 = explode(" ",$liste[10]);
+		
+		$num_parrain1 = $this ->chercherNumAmis($parrain1[0],$parrain1[1]);
+		$num_parrain2 = $this ->chercherNumAmis($parrain2[0],$parrain2[1]);
+		
+		$ajoutamis="INSERT INTO AMIS (NOM_AMIS, PRENOM_AMIS, TELEPHONEFIXE_AMIS, TELEPHONEPORTABLE_AMIS, EMAIL_AMIS, NUMADRESSE_AMIS, ADRESSERUE_AMIS, ADRESSEVILLE_AMIS, DATEENTREE_AMIS, NUM_AMIS_1, NUM_AMIS_2, NUM_COMMISSION, NUM_COMMISSION_1) VALUES(:param1,:param2,:param3,:param4,:param5,:param6,:param7,:param8,:param9,:param10,:param11,:param12,:param13)";
+		$res=$connex -> prepare($ajoutamis);
+		$res->execute(array(
+		'param1'=>$liste[0],
+		'param2'=>$liste[1],
+		'param3'=>$liste[2],
+		'param4'=>$liste[3],
+		'param5'=>$liste[4],
+		'param6'=>$liste[5],
+		'param7'=>$liste[6],
+		'param8'=>$liste[7],
+		'param9'=>$liste[8],
+		'param10'=>$num_parrain1,
+		'param11'=>$num_parrain2,
+		'param12'=>$liste[11],
+		'param13'=>$liste[12]));
+			
+			
+		$res->closeCursor();
+	}
+	
+	
+	function selectAmis(){
+		$connex =$this->monPdo;
+		$voiramis="SELECT NOM_AMIS, PRENOM_AMIS FROM AMIS";
+		
+		$res_amis=$connex -> prepare($voiramis);
+		$res_amis->execute();
+		
+		$liste_amis = array();
+		
+		while ($row_amis=$res_amis->fetch(PDO::FETCH_OBJ)) {
+			$nom = $row_amis->NOM_AMIS;
+			$prenom = $row_amis->PRENOM_AMIS;
+			$liste_amis[] = $nom." ".$prenom;
+		}
+		
+		$res_amis->closeCursor();
+		
+		return $liste_amis;
+	}
+	
+	function selectCommission(){
+		$connex =$this->monPdo;
+		$voircomis="SELECT NOM_COMMISSION FROM COMMISSION";
+		
+		$res_comm=$connex -> prepare($voircomis);
+		$res_comm->execute();
+		
+		while ($row_comm=$res_comm->fetch(PDO::FETCH_OBJ)) {
+			$nom = $row_comm->NOM_COMMISSION;
+			$liste_comm[] = $nom;
+		}
+		
+		$res_comm->closeCursor();
+		
+		return $liste_comm;
+	}
+	
+	/* autocompletion d'une liste d'amis,
+	   Param $input = input cible de l'autocompletion */
+	function prepare_listeautoAmis($input){
+		
+		$connex =$this->monPdo;
+		$voiramis="SELECT NOM_AMIS, PRENOM_AMIS FROM AMIS";
+		
+		$res_amis=$connex -> prepare($voiramis);
+		$res_amis->execute();
+		
+		while ($row_amis=$res_amis->fetch(PDO::FETCH_OBJ)) {
+			$nom = $row_amis->NOM_AMIS;
+			$prenom = $row_amis->PRENOM_AMIS;
+			$liste_amis[] = $nom." ".$prenom;
+		}
+		
+		$res_amis->closeCursor();
+		
+		
+		
+		?>
+		<script>	
 
+			var listeamis = <?php echo json_encode($liste_amis); ?>;
+			$(<?php echo "'#".$input."'"; ?>).autocomplete({
+				source : listeamis,
+				autofocus:true
+			});
+		</script>
+		<?php 
+	}
+	
+	
+	function prepare_listeautoComm($input){
+		
+		$connex =$this->monPdo;
+		$voircomis="SELECT NOM_COMMISSION FROM COMMISSION";
+		
+		$res_comm=$connex -> prepare($voircomis);
+		$res_comm->execute();
+		
+		while ($row_comm=$res_comm->fetch(PDO::FETCH_OBJ)) {
+			$nom = $row_comm->NOM_COMMISSION;
+			$liste_comm[] = $nom;
+		}
+		
+		$res_comm->closeCursor();
+		
+		
+		
+		?>
+		<script>	
+
+			var listecomm = <?php echo json_encode($liste_comm); ?>;
+			$(<?php echo "'#".$input."'"; ?>).autocomplete({
+				source : listecomm,
+				autofocus:true
+			});
+		</script>
+		<?php 
+	}
 }
 ?>
