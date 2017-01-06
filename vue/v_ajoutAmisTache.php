@@ -6,26 +6,50 @@ $numAction = $_GET['num_action'];
 
 if(isset($_GET['amis']))
 {
-  $numAmis = substr($_GET['amis'],0,1);
-  $existe = $pdo->pdo_check_existence_ami_action($numAmis,$numAction);
+  $count = 0;
 
-  if($existe['nbOccurence'] == 0)
+  for ($i=0; $i < strlen($_GET['amis']); $i++)
   {
-    $leader = $pdo->pdo_get_leader_action($numAction);
+    $carac = substr($_GET['amis'],$i,1);
 
-    if($numAmis != $leader['num_amis'])
+    if(is_numeric($carac))
     {
-      $pdo->pdo_add_amis_action($numAmis,$numAction);
-      $message = "L'amis a été ajouté avec succès! ";
+      $count++;
     }
     else
     {
-      $message = "L'amis est le chef de l'Action !";
+      break;
     }
+  }
+
+  $numAmis = substr($_GET['amis'],0,$count);
+
+  if(is_numeric($numAmis))
+  {
+      $existe = $pdo->pdo_check_existence_ami_action($numAmis,$numAction);
+
+      if($existe['nbOccurence'] == 0)
+      {
+        $leader = $pdo->pdo_get_leader_action($numAction);
+
+        if($numAmis != $leader['num_amis'])
+        {
+          $pdo->pdo_add_amis_action($numAmis,$numAction);
+          $message = "L'amis a été ajouté avec succès! ";
+        }
+        else
+        {
+          $message = "L'amis est le chef de l'Action !";
+        }
+      }
+      else
+      {
+        $message = "L'amis a déjà été ajouté a l'Action !";
+      }
   }
   else
   {
-    $message = "L'amis a déjà été ajouté a l'Action !";
+    $message = "Veuillez entrer un numéro d'AMI valide ou utiliser l'auto-completion !";
   }
 }
 

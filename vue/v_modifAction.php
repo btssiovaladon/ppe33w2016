@@ -1,4 +1,4 @@
-<h2>Modification de l'action : <?php echo $infosAction['nom_action']; ?></h2>
+<h2>Modification de l'action : <?php echo $_SESSION['num_action']; ?></h2>
 <form method='POST' action='index.php?controleur=c_action&action=a_submitAction'>
 <table>
     <tr>
@@ -13,15 +13,20 @@
                         $prenomAmis = $la['prenom_amis'];
                         $selected = '';
                         if($numAmis == $numAmisA){
-                            $selected = "selected=";
+                            $selected = 'selected="selected"';
                         }
                 ?>
                 <option <?php echo $selected; ?> value="<?php echo $numAmis; ?>">
                     <?php echo $nomAmis.' '.$prenomAmis; ?>
                 </option>
+               
                 <?php
+                      
                     }
+                  
                 ?>
+                
+            </select>
         </td>
     </tr>
     <tr>
@@ -35,7 +40,7 @@
                         $nomCommission = $lc['nom_commission'];
                         $selected = '';
                         if($numCommission == $numCommissionA){
-                            $selected = "selected=";
+                            $selected = 'selected="selected"';
                         }
                 ?>
                 <option <?php echo $selected; ?> value="<?php echo $numCommission; ?>">
@@ -44,10 +49,11 @@
                 <?php
                     }
                 ?>
+                 </select>
         </td>
     </tr>
     <?php
-        $numAction = $infosAction['num_action'];
+        $numAction = $_SESSION['num_action'];
         $nomAction = $infosAction['nom_action'];
         $dureeAction = $infosAction['duree_action'];
         $datedebAction = $infosAction['datedebut_action'];

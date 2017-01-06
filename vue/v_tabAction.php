@@ -30,7 +30,7 @@ function js_choix_action(action){
 echo 'Recherche une activité ';
 
  echo '<FORM>
- <SELECT name="activite" size="1" onchange="javascript:js_choix_action(this.value)"><OPTION value="0" selected disabled >ChoixGG</OPTION>';
+ <SELECT name="activite" size="1" onchange="javascript:js_choix_action(this.value)"><OPTION value="0" selected disabled >Choisir...</OPTION>';
  foreach($listeAction as $ligne){
 	 echo '<OPTION value="'.$ligne['num_action'].'">'.$ligne['nom_action']."</OPTION>";
 }

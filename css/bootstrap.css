@@ -6,8 +6,8 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+ -webkit-text-size-adjust: 100%;
+ -ms-text-size-adjust: 100%;
 }
 body {
   margin: 0;
@@ -41,6 +41,10 @@ audio:not([controls]) {
 [hidden],
 template {
   display: none;
+}
+.div_hidden_Forspace{
+  margin : 12% 0% 12% 0%;
+  /*border : solid red; */
 }
 a {
   background-color: transparent;
