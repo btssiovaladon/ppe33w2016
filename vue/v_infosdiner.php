@@ -1,17 +1,31 @@
 <html>
 <body>
 
-  <?php
-$nouveau=ajouterNewDiner();
+	<table>
+		<tr>
+			<th>lieudiner</th>
+			<th>datediner</th>
+			<th>Prixdiner</th>
+		</tr>
+		<tr>
+		<?php
+ 
+		//$info =$pdo-> ajouterNewDiner($lieu,$date,$prix);
+		//foreach ($variable as $key => $value) {
+		 	# 
+		 //} //($info as $key ) {
+			
+		?>
 
-foreach ($nouveau as $repas) {
-
-$_LieuDiner=$_POST[$repas->'LIEU_DINER'];
-$_DateDîner=$_POST[$repas->'DATE_DINER'];
-$_DateDîner=$_POST[$repas->'PRIXDINER_DINER'];
-
-}
-?>
+		
+		<th><?php echo $key.$lieu['lieu']?>;</th>
+			<th><?php echo $key.$date['date']?>;</th>
+			<th><?php echo $key.$prix['prix']?>;</th>
+		</tr>
+		<?php
+		
+		?>
+	</table>
 </body>
 
 </html>

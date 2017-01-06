@@ -28,7 +28,6 @@
 </head>
 
 <body>
-<?php echo'vue';?>
 <form  action="index.php?controleur=c_mangerdiner&action=sauvediner" method="POST">
 
 	<h3>Votre réservation dîner</h3>
@@ -36,17 +35,17 @@
 		<legend>Votre réservation </legend>
 
 		<label for="LieuDiner">*Lieu du Diner</label>
-		<input type ="text" name="LieuDiner" id="LIEU_DINER" size="12" placeholder ="Votre lieu pour manger"/><br/>
+		<input type ="text" name="LieuDiner" id="LIEU_DINER" size="12" placeholder ="Votre lieu pour manger" pattern="[A-Z][a-z]{5}"/><br/>
 
-		<label for="DateDîner">*Date du Dîner</label>
-		<input type="date" name="DateDiner" id="datepicker" size="30" value="<?php echo date('y/m/d')?>"/><br/>
-
-
+		<label for="DateDiner">*Date du Dîner</label>
+		<input type="date" name="DateDiner" id="datepicker" size="30" value="<?php echo date('yy/m/d')?>"/><br/>
 
 
 
-		<label for="PrixDînner">*Prix du Dîner</label>
-		<input type="number" name="PrixDînner" id="PrixDînner" size="30" placeholder="Le prix du diner"/><br/>
+
+
+		<label for="PrixDinner">*Prix du Dîner</label>
+		<input type="number" name="PrixDinner" id="PrixDinner" size="30" placeholder="Le prix du diner" pattern=[0-9999]{4}/><br/>
 
 
 		<p class="submit"> <button type="submit">Ajouter</button></p>
@@ -58,10 +57,10 @@
 </form>
 
 
-<script type="javascript">
+   <script type="text/javascript">
 
-	document.getElementById("LIEU_DINER").addEventListener("blur",function(){
-		var LieuDiner = document.getElementById("LIEU_DINER");
+	
+		var LieuDiner = document.getElementById("LieuDiner");
 
 		LieuDiner.addEventListener('blur',function(){
 
@@ -70,6 +69,16 @@
 			}
 		}
 	});
+
+    var PrixDinner = document.getElementById("PrixDinner");
+
+    PrixDinner.addEventListener('blur',function(){
+    	if(this.value.lengt==0){
+    		alert("Champs obligatoire"));
+    	}
+    }
+}
+
 
 </script>
 
