@@ -235,8 +235,15 @@ class Pdo_amis{
 			$ligne=$rat->fetchAll();
 			return $ligne;
 		}
-		
-		
+
+			public function pdo_get_partdiner($id){
+		$req = "SELECT NOM_AMIS,PRENOM_AMIS,NOMBRE_DE_PERSONNES,d.NUM_DINER
+		        FROM manger m INNER JOIN diner d ON m.NUM_DINER=d.NUM_DINER INNER JOIN amis a ON m.NUM_AMIS=a.NUM_AMIS
+		       	WHERE m.NUM_DINER = '$id'";
+		$rs = $this->monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
 
 	////////////////////////////
 		/*    FONCTION insert       */
@@ -482,7 +489,11 @@ class Pdo_amis{
 	////////////////////////////
 
 
+			public function modif_partdiner($id,$nbpers){
+				$req = "UPDATE manger SET nbpers='$nbpers' where num_diner='$id'";
+				$this -> monPdo->exec($req);
 
+			}
 		
 
 			public function modif_cotisation($montant){
@@ -511,6 +522,11 @@ class Pdo_amis{
 /*    FONCTION delete        */
 ////////////////////////////
 
+	public function pdo_sup_partdiner($id){
+		$req = "delete from manger where num_diner= :id";
+		$rs = $this->monPdo->prepare($req);
+        $rs -> execute(array('id' => $id));
+	}
 
     public function pdo_sup_action($numAction){
 		$req = "delete from action where num_action = :numAction";
