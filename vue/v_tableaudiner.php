@@ -23,10 +23,10 @@ $listeparticipants=$pdo->pdo_get_partdiner($iddiner);
       foreach ($listeparticipants as $la){
 			    ?>
       <tr id="row<?php echo $la['id'];?>">
-            <td id="nom_amis<?php echo $la['id'];?>"><?php echo $la['NOM_AMIS'];?></td>
-            <td id="prenom_amis<?php echo $la['id'];?>"><?php echo $la['PRENOM_AMIS'];?></td>
+            <td><?php echo $la['NOM_AMIS'];?></td>
+            <td><?php echo $la['PRENOM_AMIS'];?></td>
             <td id="nbpers_amis<?php echo $la['id'];?>"><?php echo $la['NOMBRE_DE_PERSONNES'];?></td>
-            <td><input type='button' class="edit_button" id="edit_button<?php echo $row['id'];?>" value="Editer" onclick="edit_row('<?php echo $row['id'];?>');">
+            <td><input type='button' class="edit_button" id="edit_button<?php echo $row['id'];?>" value="Editer participants" onclick="edit_row('<?php echo $row['id'];?>');">
             <input type='button' class="save_button" id="save_button<?php echo $row['id'];?>" value="Sauvegarder" onclick="save_row('<?php echo $row['id'];?>');">
             <input type='button' class="delete_button" id="delete_button<?php echo $row['id'];?>" value="Supprimer" onclick="delete_row('<?php echo $row['id'];?>');"></td>
 	</tr><?php
