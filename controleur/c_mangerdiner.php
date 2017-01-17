@@ -1,4 +1,5 @@
 <?php
+require_once('../include/inc_pdo_amis.php');
 
 $action=$_REQUEST['action'];
 switch($action){
@@ -36,7 +37,8 @@ if(isset($_POST['edit_row']))
 if(isset($_POST['delete_row']))
 {
  $row_no=$_POST['row_id'];
-pdo_sup_partdiner($id)
+
+ pdo_sup_partdiner($id)
  echo "success";
  exit();
 }
